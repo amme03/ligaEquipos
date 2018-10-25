@@ -4,20 +4,15 @@ import { View, Text, Image, ScrollView, StyleSheet, ImageBackground, TouchableOp
 class SideMenu extends Component {
     constructor(props) {
         super(props);
-         this.state = {
+        this.state = {
         };
     }
-
-   
-    
-    
-
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.separador} >
-                   <TouchableOpacity style={{
+                    <TouchableOpacity style={{
                         width: 280,
                         height: 200,
                     }} >
@@ -68,8 +63,8 @@ class SideMenu extends Component {
                             </ImageBackground>
                         </TouchableOpacity>
                     </View>
-                   
-                    
+
+
                 </ScrollView>
 
             </View >

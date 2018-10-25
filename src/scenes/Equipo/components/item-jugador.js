@@ -8,24 +8,23 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTIm
 const ItemLiga = (
     props,
 ) => (
-    <TouchableHighlight onPress={()=>props.navigation.navigate('EquipoScreen', {id:props.idTeam})}
-    underlayColor="#ccc">
+    
     <View style={styles.container}>
         <View  style={styles.imageView}>
             <Image
              style={styles.image}
-             source={{uri:props.article.strTeamBadge}}></Image>
+             source={{uri:props.article.strThumb}}></Image>
         </View>
         <View  style={styles.content}>
-            <Text style={styles.articleName}>{props.article.strAlternate}</Text>
-            <Text style={styles.articlePrice}>{props.article.intFormedYear}</Text>
-            <Text style={styles.articlePrice}>{props.article.strStadium}</Text>
-            <Text style={styles.articlePrice}>{props.article.strDescriptionES}</Text>
+            <Text style={styles.articleName}>{props.article.strPlayer}</Text>
+            <Text style={styles.articlePrice}>{props.article.dateBorn}</Text>
+            <Text style={styles.articlePrice}>{props.article.strNationality}</Text>
+            <Text style={styles.articlePrice}>{props.article.strDescriptionEN}</Text>
 
         </View>
 
     </View>
-    </TouchableHighlight>
+
 );
 
 
