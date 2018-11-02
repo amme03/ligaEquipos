@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, SectionList, Text } from 'react-native';
+import { View, ScrollView, Image, SectionList, Text, TouchableHighlight } from 'react-native';
 import styles from './components/styles/styles-liga';
 //import Api from './../../../utils/api' --con api externa
 import { YellowBox } from 'react-native';
@@ -14,25 +14,25 @@ class Equipo extends Component {
     super(props);
     this.state = {
       JugadorListLiga: [],
-      EquipoListLiga: []
- 
+      EquipoListLiga: {}
+
     }
   }
 
   //Ciclo de vida del componente
   async componentDidMount() {
-     this.getLiga();
+    this.getLiga();
   }
- 
+
 
   async getLiga() {
 
     const data = await HttpLiga.getJugadoresByIdEquipo(this.props.navigation.getParam('idTeam', ''));
     this.setState({ JugadorListLiga: data.player })
     const dataEquipo = await HttpLiga.getEquipoById(this.props.navigation.getParam('idTeam', ''));
-    console.log(dataEquipo);
-    this.setState({ EquipoListLiga: dataEquipo.teams })
 
+    this.setState({ EquipoListLiga: dataEquipo.teams[0] });
+     console.log(this.state.EquipoListLiga);
   }
   //Encabezado de la interfaz
   static navigationOptions = {
@@ -49,12 +49,24 @@ class Equipo extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <View>
           <Image
             style={styles.imageBarnner}
-            source={{uri:this.state.EquipoListLiga.strStadiumThumb}} />
+            source={{ uri: this.state.EquipoListLiga.strStadiumThumb }} />
+
         </View>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('SitioScreen', { strFacebook: this.state.EquipoListLiga.strWebsite })}
+          underlayColor="#ccc">
+          <View style={styles.container}>
+            <View style={styles.imageView}>
+              <Image
+                style={styles.imageBarnner}
+                source={{ uri: this.state.EquipoListLiga.strStadiumThumb }}></Image>
+                <Text>allaala->{this.state.EquipoListLiga.strFacebook}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
         <View>
           <ScrollView style={styles.container}>
             <SectionList
@@ -68,9 +80,12 @@ class Equipo extends Component {
               ]}
             ></SectionList>
           </ScrollView>
+          <View>
+          </View>
         </View>
-      </ScrollView>
+      </View>
     );
   };
 }
 export default Equipo;
+

@@ -5,6 +5,10 @@ const styles = StyleSheet.create({
         marginLeft: 2,
         marginRight: 2
     },
+    container2: {
+        height: 10,
+        width: 50,
+    },
     imageBarnner: {
         width: 414,
         height: 280
